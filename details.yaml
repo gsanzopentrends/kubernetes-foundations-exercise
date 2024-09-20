@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: details
+spec:
+  containers:
+  - image: istio/examples-bookinfo-details-v2
+    name: details
+    ports:
+    - containerPort: 9080

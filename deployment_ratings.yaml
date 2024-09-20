@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ratings-deployment
+  labels:
+    app: ratings
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: ratings
+  template:
+    metadata:
+      labels:
+        app: ratings
+    spec:
+      containers:
+      - image: istio/examples-bookinfo-ratings-v1
+        name: ratings
+        ports:
+        - containerPort: 9080

@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: details-deployment
+  labels:
+    app: details
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: details
+  template:
+    metadata:
+      labels:
+        app: details
+    spec:
+      containers:
+      - image: istio/examples-bookinfo-details-v2
+        name: details
+        ports:
+        - containerPort: 9080

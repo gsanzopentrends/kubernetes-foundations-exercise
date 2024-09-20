@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: productpage-deployment
+  labels:
+    app: productpage
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: productpage
+  template:
+    metadata:
+      labels:
+        app: productpage
+    spec:
+      containers:
+      - image: istio/examples-bookinfo-productpage-v1
+        name: productpage
+        ports:
+        - containerPort: 9080
+        env:
+        - name: REVIEWS_HOSTNAME
+          value: "10.244.0.57"
+        - name: DETAILS_HOSTNAME
+          value: "10.244.0.44"
+        - name: RATINGS_HOSTNAME
+          value: "10.244.0.40"
